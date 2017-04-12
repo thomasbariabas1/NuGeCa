@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">NuGeCa</string>
+    <string name="results">Results</string>
+    <string name="time_zone_difference_from_gmt">Time Zone Difference from GMT(hours)</string>
+    <string name="generator_size">Generator size(GBq)</string>
+    <string name="reference_date_12_00_gmt">Reference Date (12:00 GMT)(Label Date)</string>
+    <string name="elution_date">Elution Date(Date)</string>
+    <string name="elution_time">Elution Time</string>
+    <string name="last_elution_date">Last Elution Date</string>
+    <string name="last_elution_time">Last Elution Time</string>
+    <string name="gbq">GBq</string>
+    <string name="mci">mCi</string>
+    <string name="calculate">Calculate</string>
+
+
+</resources>
