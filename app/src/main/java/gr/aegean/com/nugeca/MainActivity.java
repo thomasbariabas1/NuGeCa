@@ -8,21 +8,24 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Interpolator;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private EditText timedifference;
-    private EditText generatorsize;
+    private Spinner timedifference;
+    private Spinner generatorsize;
     private Button referencedate;
     private Button eluriondate;
     private Button eluriontime;
@@ -47,15 +50,69 @@ public class MainActivity extends AppCompatActivity {
     private double branchingfactor=0.862;
     private Calendar calendar;
     private Button calculate;
+    ArrayList<Integer> timeZone =new ArrayList<Integer>();
+    ArrayList<Double> generatorSizw =new ArrayList<Double>();
     Button button;
     private int year, month, day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        timeZone.add(-12);
+        timeZone.add(-11);
+        timeZone.add(-10);
+        timeZone.add(-9);
+        timeZone.add(-8);
+        timeZone.add(-7);
+        timeZone.add(-6);
+        timeZone.add(-5);
+        timeZone.add(-4);
+        timeZone.add(-3);
+        timeZone.add(-2);
+        timeZone.add(-1);
+        timeZone.add(0);
+        timeZone.add(1);
+        timeZone.add(2);
+        timeZone.add(3);
+        timeZone.add(4);
+        timeZone.add(5);
+        timeZone.add(6);
+        timeZone.add(7);
+        timeZone.add(8);
+        timeZone.add(9);
+        timeZone.add(10);
+        timeZone.add(11);
+        timeZone.add(12);
 
-        timedifference = (EditText) findViewById(R.id.timedifference);
-        generatorsize = (EditText) findViewById(R.id.generatorsize);
+        timedifference = (Spinner) findViewById(R.id.timedifference);
+        ArrayAdapter<Integer> karant_adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, timeZone);
+        timedifference.setAdapter(karant_adapter);
+
+        generatorSizw.add(2.5);
+        generatorSizw.add(4.0);
+        generatorSizw.add(5.0);
+        generatorSizw.add(6.0);
+        generatorSizw.add(7.5);
+        generatorSizw.add(8.5);
+        generatorSizw.add(9.0);
+        generatorSizw.add(10.0);
+        generatorSizw.add(12.5);
+        generatorSizw.add(15.0);
+        generatorSizw.add(20.0);
+        generatorSizw.add(25.0);
+        generatorSizw.add(30.0);
+        generatorSizw.add(40.0);
+        generatorSizw.add(50.0);
+        generatorSizw.add(60.0);
+        generatorSizw.add(75.0);
+        generatorSizw.add(100.0);
+
+
+        generatorsize = (Spinner) findViewById(R.id.generatorsize);
+        ArrayAdapter<Double> gensize_adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, generatorSizw);
+        generatorsize.setAdapter(gensize_adapter);
         referencedate = (Button) findViewById(R.id.referencedate);
         eluriondate = (Button) findViewById(R.id.eluriondate);
         eluriontime = (Button) findViewById(R.id.elutiontime);
@@ -64,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         calculate = (Button) findViewById(R.id.calculate);
         calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
-
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
@@ -118,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
         daystoref=calculateHours(eluriondate.getText().toString(),referencedate.getText().toString());
         Log.e("Days to ref",""+daystoref);
-        hourstoref=calculateHoursFromTime(eluriontime.getText().toString(),"12:00")-Integer.parseInt(timedifference.getText().toString());
+        hourstoref=calculateHoursFromTime(eluriontime.getText().toString(),"12:00")-Integer.parseInt(timedifference.getSelectedItem().toString());
         Log.e("Hours to ref",""+hourstoref);
         totalhours=daystoref+hourstoref;
         Log.e("Total to ref",""+totalhours);
@@ -133,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("l1",""+l1);
         l2=Math.log(2)/tc99mhalflife;
         Log.e("l2",""+l2);
-        gensizeelution=Double.parseDouble(generatorsize.getText().toString())*Math.exp(-Math.log(2)*totalhours/mo99halflife);
+        gensizeelution=Double.parseDouble(generatorsize.getSelectedItem().toString())*Math.exp(-Math.log(2)*totalhours/mo99halflife);
         Log.e("Gen size elu",""+gensizeelution);
         gensizelastelutions=gensizeelution*Math.exp(Math.log(2)*totalsincelastelurion/mo99halflife);
         Log.e("Gen size last elu",""+gensizelastelutions);
@@ -144,11 +200,11 @@ public class MainActivity extends AppCompatActivity {
         growth=temp2*temp1*branchingfactor;
         Log.e("Growth",""+growth);
         double results =growth*typicalyeld;
-        results1.setText(""+results);
-        results2.setText(""+results/37*1000);
+        double temp=results/37*1000;
+        results1.setText(String.format("%.2f", results));
+        results2.setText(String.format("%.2f",temp));
     }
     public void initiate(){
-        timedifference.setText("2");
         referencedate.setText("26/03/2015");
         eluriondate.setText("31/03/2015");
         eluriontime.setText("9:00");

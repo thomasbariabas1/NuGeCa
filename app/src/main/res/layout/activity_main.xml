@@ -19,12 +19,11 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:text="@string/time_zone_difference_from_gmt"/>
-        <EditText
+        <Spinner
             android:id="@+id/timedifference"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:inputType="number"/>
+            android:layout_weight=".5"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,12 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:text="@string/generator_size"/>
-        <EditText
+        <Spinner
             android:id="@+id/generatorsize"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:inputType="number"
             />
     </LinearLayout>
     <LinearLayout
@@ -130,7 +128,9 @@
         android:layout_height="wrap_content"
         android:text="@string/results"
         android:layout_marginTop="20dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textColor="#876578"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -140,12 +140,16 @@
             android:id="@+id/results1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="@string/gbq"/>
+            android:text="@string/gbq"
+            android:textSize="20sp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -155,12 +159,16 @@
             android:id="@+id/results2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
+            android:layout_weight=".5"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="@string/mci"/>
+            android:text="@string/mci"
+            android:textSize="20sp"/>
     </LinearLayout>
 
     <Button

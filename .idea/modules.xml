@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NuGeCa.iml" filepath="$PROJECT_DIR$/NuGeCa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NuGeCaRemote.iml" filepath="$PROJECT_DIR$/NuGeCaRemote.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
