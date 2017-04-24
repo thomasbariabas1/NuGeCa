@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Interpolator;
 import android.widget.ArrayAdapter;
@@ -17,15 +19,21 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.lang.reflect.Field;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+import java.util.SimpleTimeZone;
+
+import static java.text.DateFormat.getDateInstance;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private Spinner timedifference;
-    private Spinner generatorsize;
     private Button referencedate;
     private Button eluriondate;
     private Button eluriontime;
@@ -45,74 +53,65 @@ public class MainActivity extends AppCompatActivity {
     private double gensizelastelutions;
     private double growth;
     private double mo99halflife=66;
-    private double tc99mhalflife=6.02;
+    private double tc99mhalflife=6.01;
     private double typicalyeld=0.9;
     private double branchingfactor=0.862;
     private Calendar calendar;
     private Button calculate;
-    ArrayList<Integer> timeZone =new ArrayList<Integer>();
-    ArrayList<Double> generatorSizw =new ArrayList<Double>();
     Button button;
+    private Button button1;
+    private Button button2;
     private int year, month, day;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        timeZone.add(-12);
-        timeZone.add(-11);
-        timeZone.add(-10);
-        timeZone.add(-9);
-        timeZone.add(-8);
-        timeZone.add(-7);
-        timeZone.add(-6);
-        timeZone.add(-5);
-        timeZone.add(-4);
-        timeZone.add(-3);
-        timeZone.add(-2);
-        timeZone.add(-1);
-        timeZone.add(0);
-        timeZone.add(1);
-        timeZone.add(2);
-        timeZone.add(3);
-        timeZone.add(4);
-        timeZone.add(5);
-        timeZone.add(6);
-        timeZone.add(7);
-        timeZone.add(8);
-        timeZone.add(9);
-        timeZone.add(10);
-        timeZone.add(11);
-        timeZone.add(12);
 
-        timedifference = (Spinner) findViewById(R.id.timedifference);
-        ArrayAdapter<Integer> karant_adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, timeZone);
-        timedifference.setAdapter(karant_adapter);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button2.setText("15");
+        button1.setText(""+2);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(MainActivity.this, button1);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.menu1, popup.getMenu());
 
-        generatorSizw.add(2.5);
-        generatorSizw.add(4.0);
-        generatorSizw.add(5.0);
-        generatorSizw.add(6.0);
-        generatorSizw.add(7.5);
-        generatorSizw.add(8.5);
-        generatorSizw.add(9.0);
-        generatorSizw.add(10.0);
-        generatorSizw.add(12.5);
-        generatorSizw.add(15.0);
-        generatorSizw.add(20.0);
-        generatorSizw.add(25.0);
-        generatorSizw.add(30.0);
-        generatorSizw.add(40.0);
-        generatorSizw.add(50.0);
-        generatorSizw.add(60.0);
-        generatorSizw.add(75.0);
-        generatorSizw.add(100.0);
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        button1.setText(item.getTitle());
+                        return true;
+                    }
+                });
 
+                popup.show(); //showing popup menu
+            }
+        }); //closing the setOnClickListener method
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(MainActivity.this, button2);
 
-        generatorsize = (Spinner) findViewById(R.id.generatorsize);
-        ArrayAdapter<Double> gensize_adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, generatorSizw);
-        generatorsize.setAdapter(gensize_adapter);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.menu2, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        button2.setText(item.getTitle());
+                        return true;
+                    }
+                });
+
+                popup.show(); //showing popup menu
+            }
+        }); //closing the setOnClickListener method
         referencedate = (Button) findViewById(R.id.referencedate);
         eluriondate = (Button) findViewById(R.id.eluriondate);
         eluriontime = (Button) findViewById(R.id.elutiontime);
@@ -129,8 +128,12 @@ public class MainActivity extends AppCompatActivity {
         results2 = (TextView) findViewById(R.id.results2);
 
 
-        initiate();
-       // calculations();
+        try {
+            initiate();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        // calculations();
         referencedate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,42 +176,43 @@ public class MainActivity extends AppCompatActivity {
     public void calculations(){
 
         daystoref=calculateHours(eluriondate.getText().toString(),referencedate.getText().toString());
-        Log.e("Days to ref",""+daystoref);
-        hourstoref=calculateHoursFromTime(eluriontime.getText().toString(),"12:00")-Integer.parseInt(timedifference.getSelectedItem().toString());
-        Log.e("Hours to ref",""+hourstoref);
+        hourstoref=calculateHoursFromTime(eluriontime.getText().toString(),"12:00")-Integer.parseInt(button1.getText().toString());
         totalhours=daystoref+hourstoref;
-        Log.e("Total to ref",""+totalhours);
         daysincelastelurion=calculateHours(eluriondate.getText().toString(),lasteluriondate.getText().toString());
-        Log.e("Days since",""+daysincelastelurion);
         hourssincelastelurion=calculateHoursFromTime(eluriontime.getText().toString(),lasteluriontime.getText().toString());
-        Log.e("Hours since",""+hourssincelastelurion);
         totalsincelastelurion=daysincelastelurion+hourssincelastelurion;
-        Log.e("Total since",""+totalsincelastelurion);
 
         l1=Math.log(2)/mo99halflife;
-        Log.e("l1",""+l1);
         l2=Math.log(2)/tc99mhalflife;
-        Log.e("l2",""+l2);
-        gensizeelution=Double.parseDouble(generatorsize.getSelectedItem().toString())*Math.exp(-Math.log(2)*totalhours/mo99halflife);
-        Log.e("Gen size elu",""+gensizeelution);
+        gensizeelution=Double.parseDouble(button2.getText().toString())*Math.exp(-Math.log(2)*totalhours/mo99halflife);
         gensizelastelutions=gensizeelution*Math.exp(Math.log(2)*totalsincelastelurion/mo99halflife);
-        Log.e("Gen size last elu",""+gensizelastelutions);
         double temp2 = (l2/(l2-l1))*gensizelastelutions;
-        Log.e("temp2",""+temp2);
         double temp1=(Math.exp(-(l1*totalsincelastelurion))-Math.exp(-(l2*totalsincelastelurion)));
-        Log.e("temp1",""+temp1);
         growth=temp2*temp1*branchingfactor;
-        Log.e("Growth",""+growth);
         double results =growth*typicalyeld;
         double temp=results/37*1000;
-        results1.setText(String.format("%.2f", results));
-        results2.setText(String.format("%.2f",temp));
+        if(!(round(results, 2)<0)&&!(round(temp, 2)<0)) {
+            results1.setText("" + round(results, 2));
+            results2.setText("" + round(temp, 2));
+        }else{
+            results1.setText("WRONG DATE");
+            results2.setText("CHECK DATES");
+        }
     }
-    public void initiate(){
-        referencedate.setText("26/03/2015");
-        eluriondate.setText("31/03/2015");
-        eluriontime.setText("9:00");
-        lasteluriondate.setText("30/03/2015");
+    public void initiate() throws ParseException {
+
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+        SimpleDateFormat formattime = new SimpleDateFormat("HH:mm", Locale.US);
+        Date myDate = new Date();
+        Date newDate = new Date(myDate.getTime() - 24 * 60 * 60 * 1000);
+        Date newDate2 = new Date(myDate.getTime() - 2*24 * 60 * 60 * 1000);
+        referencedate.setText(format.format(newDate2));
+        eluriondate.setText(format.format(new Date()));
+
+        eluriontime.setText(formattime.format(new Date()));
+
+        lasteluriondate.setText(format.format(newDate));
         lasteluriontime.setText("9:00");
 
     }
@@ -259,10 +263,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void showDate(int year, int month, int day ) {
         button.setText(new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year));
+                .append(month+1).append("/").append(year));
     }
     private void showTime(int hourOfDay,int minute){
-        button.setText(new StringBuilder().append(hourOfDay).append(":").append(minute));
+        if(minute<10)
+            button.setText(new StringBuilder().append(hourOfDay).append(":0").append(minute));
+        else
+            button.setText(new StringBuilder().append(hourOfDay).append(":").append(minute));
     }
 
 
@@ -277,5 +284,12 @@ public class MainActivity extends AppCompatActivity {
         String[] tmp1=time1.split(":");
         String[] tmp2=time2.split(":");
         return Integer.parseInt(tmp1[0])-Integer.parseInt(tmp2[0]);
+    }
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 }

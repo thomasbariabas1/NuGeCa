@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/one"
+        android:title="2.5"/>
+    <item
+        android:id="@+id/two"
+        android:title="4"/>
+    <item
+        android:id="@+id/three"
+        android:title="5"/>
+    <item
+        android:id="@+id/four"
+        android:title="6"/>
+    <item
+        android:id="@+id/five"
+        android:title="7.5"/>
+    <item
+        android:id="@+id/six"
+        android:title="8.5"/>
+    <item
+        android:id="@+id/seven"
+        android:title="9"/>
+    <item
+        android:id="@+id/eight"
+        android:title="10"/>
+    <item
+        android:id="@+id/nine"
+        android:title="12.5"/>
+    <item
+        android:id="@+id/ten"
+        android:title="15"/>
+    <item
+        android:id="@+id/eleven"
+        android:title="20"/>
+    <item
+    android:id="@+id/twelve"
+    android:title="25"/>
+    <item
+    android:id="@+id/thirteen"
+    android:title="30"/>
+    <item
+    android:id="@+id/fourteen"
+    android:title="40"/>
+    <item
+        android:id="@+id/fifthteen"
+        android:title="50"/>
+    <item
+        android:id="@+id/sixteen"
+        android:title="60"/>
+    <item
+        android:id="@+id/seventeen"
+        android:title="75"/>
+    <item
+        android:id="@+id/eightteen"
+        android:title="100"/>
+
+
+
+</menu>

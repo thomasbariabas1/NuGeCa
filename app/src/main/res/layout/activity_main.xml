@@ -18,120 +18,217 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="@string/time_zone_difference_from_gmt"/>
-        <Spinner
-            android:id="@+id/timedifference"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:text="@string/generator_size"/>
-        <Spinner
-            android:id="@+id/generatorsize"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
+            android:text="@string/time_zone_difference_from_gmt"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
             />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:dropDownWidth="160dp"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="@string/reference_date_12_00_gmt"/>
+            android:text="@string/generator_size"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:dropDownWidth="160dp"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_weight=".5"
+            android:text="@string/reference_date_12_00_gmt"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
+
         <Button
             android:id="@+id/referencedate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:inputType="date" />
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="@string/elution_date"/>
-        <Button
-            android:id="@+id/eluriondate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:inputType="date" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:text="@string/elution_time"/>
-        <Button
-            android:id="@+id/elutiontime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:inputType="datetime" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".5"
-            android:text="@string/last_elution_date"/>
+            android:text="@string/last_elution_date"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/lastelutiondate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:inputType="date" />
+            android:inputType="date"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:text="@string/last_elution_time"/>
+            android:text="@string/last_elution_time"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"/>
         <Button
             android:id="@+id/lastelutiontime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:inputType="datetime" />
+            android:inputType="datetime"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="@string/elution_date"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/eluriondate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:inputType="date"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:text="@string/elution_time"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"/>
+        <Button
+            android:id="@+id/elutiontime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:inputType="datetime"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:textColor="#fff"/>
     </LinearLayout>
 
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:dividerPadding="12.0dip"
+    android:divider="?android:listDivider">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/results"
-        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textSize="20dp"
-        android:textColor="#876578"/>
-
+        android:textSize="25sp"
+        android:textColor="#303F9F"
+        android:textStyle="bold"
+        android:shadowColor="#303F9F"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
+</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -141,15 +238,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textStyle="bold"/>
+            android:textSize="23sp"
+            android:gravity="end"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:text="0.0"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:text="@string/gbq"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:textColor="#000"
+            android:textStyle="bold"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -160,22 +262,39 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:textStyle="bold"/>
+            android:textSize="23sp"
+            android:gravity="end"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:text="0.0"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".5"
             android:text="@string/mci"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:textColor="#000"
+            android:textStyle="bold"/>
     </LinearLayout>
 
     <Button
         android:id="@+id/calculate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calculate"/>
+        android:text="@string/calculate"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/buttonshapecalculate"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:textSize="18sp"
+        />
+
 </LinearLayout>
 
 
